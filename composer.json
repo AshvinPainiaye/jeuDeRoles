@@ -1,0 +1,24 @@
+{
+  "name": "Jdr",
+  "description": "Jdr",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ashvin PAINIAYE",
+      "email": "contact@ashvinpainiaye.com"
+    },
+    {
+      "name": "Frederic BOYER",
+      "email": "fred@fred.fr"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Jdr\\": "src/"
+    },
+    "config": {
+      "optimize-autoloader": true
+    }
+  }
+}
