@@ -1,6 +1,6 @@
 {
-  "name": "Jdr",
-  "description": "Jdr",
+  "name": "Rpg",
+  "description": "Rpg",
   "license": "MIT",
   "authors": [
     {
@@ -9,13 +9,13 @@
     },
     {
       "name": "Frederic BOYER",
-      "email": "fred@fred.fr"
+      "email": "frede@fred.fr"
     }
   ],
   "require": {},
   "autoload": {
     "psr-4": {
-      "Jdr\\": "src/"
+      "Rpg\\": "src/"
     },
     "config": {
       "optimize-autoloader": true

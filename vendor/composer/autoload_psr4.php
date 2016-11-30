@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Jdr\\' => array($baseDir . '/src'),
+    'Rpg\\' => array($baseDir . '/src'),
 );

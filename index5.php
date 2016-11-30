@@ -1,47 +1,95 @@
 <?php
 
-// Créer un jeu de rôles sous forme de texte : 
-// Game Design
-// ==========
-// * Le héros a 200 points de vie
-// * La vie du héros augmente de 50 quand il prend le bonus *"vie supplémentaire"*
-// * Le héros fait 15 de dégâts
-// * Le héros peut obtenir une amure +20 en recevant le bonus *"Armure"*
-// * L'armure du héros se soustrait à la puissance d'attaque de l'ennemi. Le total des dégâts qui seront reçus par le héros est la résultante de la différence entre l'armure et la puissance d'attaque du héros.
-// * Le héros perd de la vie à chaque fois qu'il se fait attaquer avec succès par un ennemi
-// * Les ennemies peuvent attaquer le héros et lui faire des dégâts de valeurs différentes
-// * Pour l'instant il y'a 3 types d'ennemies classer par la puissance des attaques : minion (dégâts 10), lieutenant minion(dégâts 30), chef minion (dégâts 100).
-//
-// Stories
-// =======
-// Afficher dans des fichiers différents les différents stories suivants :
-//
-// *  héros récupère un bonus de vie (afficher la vie avant le bonus puis après)
-// *  Le héros récupère un bonus d'armure (afficher la quantité d'armure avant puis après)
-// *  Le héros se fait un attaquer par un minion(afficher la vie avant l'attaque puis après)
-// *  Le héros récupère de l'armure puis se fait attaquer par un lieutenant minion (afficher la vie avant l'attaque puis après)
-// *  Le héros doit combattre le chef minion durant 5 tours. Avant chaque tour le héros a 1 chance sur 3 d'obtenir de l'armure et 1 chance sur 5 d'obtenir de la vie. A chaque round le héros attaque le chef minion puis le chef minion attaque le héros (Afficher pour chaques round: la valeur d'armure et la quantité de vie avant chaque attaque)
-//
-// Contraintes
-// =========
-// * Utiliser des classes ! pas de fonctions !
-// * Utiliser composer pour mettre en place l'autoloading
-// * Les seuls tuto que vous pouvez utiliser c'est pour mettre en place composer et autoloading
-//
-// Bonus
-// =====
-// * Rendre le jeu intéractif
-// * Sauvegarder le résultat des combats en base de données
+namespace Rpg;
+require __DIR__ . '/vendor/autoload.php';
+
+echo "<p>Le héros doit combattre le chef minion durant 5 tours. Avant chaque tour le héros a 1 chance sur 3 d'obtenir de l'armure et 1 chance sur 5 d'obtenir de la vie. A chaque round le héros attaque le chef minion puis le chef minion attaque le héros (Afficher pour chaques round: la valeur d'armure et la quantité de vie avant chaque attaque)</p>";
+
+$hero = new Hero();
+$chef = new Chef();
 
 
 
+for ($i=1; $i <= 5; $i++) {
+
+
+  $luckArmor = 2 ;
+  $randomArmor = rand(1,3);
+  if ($randomArmor == $luckArmor) {
+    $hero->setArmor();
+  } else{
+    $hero->getArmor();
+  }
+
+  $luckLife = 1 ;
+  $randomLife = rand(1,5);
+  if ($randomLife == $luckLife) {
+    $hero->setLife();
+  }else{
+    $hero->getLife();
+  }
 
 
 
+  $attackHero = $hero->attack($chef);
+  $attackEnnemy = $chef->attack($hero);
 
 
+  $heroLifeBefore = $hero->getLife();
+  $heroLifeAfter = $attackEnnemy['life'];
+
+  $chefLifeBefore = $chef->getLife();
+  $chefLifeAfter = $attackHero['life'];
+
+  ?>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Tour <?php echo $i;?></th>
+        <th>Vie avant</th>
+        <th>Vie après</th>
+        <th>Armure Avant</th>
+        <th>Armure après</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="success">
+        <td>Heros</td>
+        <td><?php echo $heroLifeBefore;?></td>
+        <td><?php echo $heroLifeAfter ;?></td>
+        <td><?php echo $hero->getArmor() ;?></td>
+        <td><?php echo $attackEnnemy['armor'] ;?></td>
+      </tr>
+      <tr class="danger">
+        <td>Chef-Minion</td>
+        <td><?php echo $chefLifeBefore?></td>
+        <td><?php echo $chefLifeAfter?></td>
+        <td>Aucune</td>
+        <td>Aucune</td>
+      </tr>
+      <tr>
+      </tr>
+    </tbody>
+  </table>
+
+  <?php
+
+  $heroKeepLife = $hero->addLife($heroLifeAfter);
+  $chefKeepLife = $chef->addLife($chefLifeAfter);
 
 
+  if ($heroLifeAfter <= 0 && $chefLifeAfter <= 0) { ?>
+    <p class="text-center"><strong>Hero et chef sont tout les deux mort au tour numéro <?php echo $i; ?></strong></p>
+    <?php die();
+  } else if ($heroLifeAfter <= 0) { ?>
+    <p class="text-center"><strong>Hero a perdu au tour numéro <?php echo $i; ?></strong></p>
+    <?php die();
+  } else if ($chefLifeAfter <= 0) { ?>
+    <p class="text-center"><strong>Chef a perdu au tour numéro <?php echo $i; ?></strong></p>
+    <?php die();
+  }
 
+}
 
- ?>
+?>
