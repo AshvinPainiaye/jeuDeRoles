@@ -10,5 +10,14 @@ $hero = new Hero();
 $lieutenant = new Lieutenant();
 $hero->setArmor();
 $attack=$lieutenant->attack($hero);
-echo 'armur avant :' . $hero->getArmor() . 'armure après :' . $attack['armor'] . '</br>';
-echo "vie avant :" .$hero->getLife()." vie après attaque :" .$attack['life'];
+?>
+
+<ul>
+  <li>armur avant : <?php echo $hero->getArmor() ?></li>
+  <li>armur après : <?php echo $attack['armor'] ?></li>
+</ul>
+
+<ul>
+  <li>vie avant : <?php echo $hero->getLife() ?></li>
+  <li>vie après attaque : <?php echo $attack['life'] ?></li>
+</ul>

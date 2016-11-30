@@ -10,4 +10,9 @@ $hero = new Hero();
 $minion = new Minion();
 $attack=$minion->attack($hero);
 
-echo "vie avant :" .$hero->getLife()." vie après attaque :" .$attack['life'];
+?>
+
+<ul>
+  <li>vie avant : <?php echo $hero->getLife() ?></li>
+  <li>vie après attaque : <?php echo $attack['life'] ?></li>
+</ul>
