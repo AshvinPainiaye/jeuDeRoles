@@ -11,6 +11,6 @@ $hero = new Hero();
 
 
 <ul>
-  <li>armur avant bonus: <?php echo $hero->getArmor() ?></li>
-  <li>armur après bonus: <?php echo $hero->setArmor() ?></li>
+  <li>Armure avant bonus: <?php echo $hero->getArmor() ?></li>
+  <li>Armure après bonus: <?php echo $hero->setArmor() ?></li>
 </ul>

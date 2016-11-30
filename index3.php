@@ -13,6 +13,6 @@ $attack=$minion->attack($hero);
 ?>
 
 <ul>
-  <li>vie avant : <?php echo $hero->getLife() ?></li>
-  <li>vie après attaque : <?php echo $attack['life'] ?></li>
+  <li>Vie avant : <?php echo $hero->getLife() ?></li>
+  <li>Vie après attaque : <?php echo $attack['life'] ?></li>
 </ul>

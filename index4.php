@@ -13,11 +13,11 @@ $attack=$lieutenant->attack($hero);
 ?>
 
 <ul>
-  <li>armur avant : <?php echo $hero->getArmor() ?></li>
-  <li>armur après : <?php echo $attack['armor'] ?></li>
+  <li>Armure avant : <?php echo $hero->getArmor() ?></li>
+  <li>Armure après : <?php echo $attack['armor'] ?></li>
 </ul>
 
 <ul>
-  <li>vie avant : <?php echo $hero->getLife() ?></li>
-  <li>vie après attaque : <?php echo $attack['life'] ?></li>
+  <li>Vie avant : <?php echo $hero->getLife() ?></li>
+  <li>Vie après attaque : <?php echo $attack['life'] ?></li>
 </ul>

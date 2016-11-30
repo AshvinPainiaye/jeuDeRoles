@@ -10,6 +10,6 @@ $hero = new Hero();
 ?>
 
 <ul>
-  <li>vie avant bonus: <?php echo $hero->getLife() ?></li>
-  <li>vie après bonus: <?php echo $hero->setLife() ?></li>
+  <li>Vie avant bonus: <?php echo $hero->getLife() ?></li>
+  <li>Vie après bonus: <?php echo $hero->setLife() ?></li>
 </ul>

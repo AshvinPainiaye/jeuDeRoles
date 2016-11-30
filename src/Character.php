@@ -10,10 +10,6 @@ class Character
   private $damage;
   private $name;
 
-  function __construct()
-  {
-    //$this->armor= $armor;
-  }
 
   public function attack($target)
   {
