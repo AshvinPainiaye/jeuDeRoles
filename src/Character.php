@@ -2,65 +2,53 @@
 
 namespace Rpg;
 
-
 class Character
 {
-  private $life;
-  private $armor;
-  private $damage;
-  private $name;
 
+    private $life;
+    private $armor;
+    private $damage;
 
-  public function attack($target)
-  {
+    public function attack($target)
+    {
 
-    $stats = array();
+        $stats = array();
+        $lifeTarget = $target->getLife();
 
-    $lifeTarget = $target->getLife();
-
-    if (!method_exists($target, 'getArmor')) {
-      $armor = 0;
-    }else{
-      $armor = $target->getArmor();
-    }
-
-    if ($armor == 0) {
-      $stats['life'] = $lifeTarget - $this->getDamage();
-      $stats['armor'] = 0;
-      if ($stats['life'] <= 0) {
-        $stats['life'] = 'Mort';
-      }
-    } else{
-
-      $armorFinal = $armor - $this->getDamage();
-
-      if ($armorFinal <= 0) {
-        $stats['armor'] = 0;
-        $stats['life'] = $lifeTarget + $armorFinal;
-
-        if ($stats['life'] <= 0) {
-          $stats['life'] = 'Mort';
+        if (!method_exists($target, 'getArmor')) {
+            $armor = 0;
+        } else {
+            $armor = $target->getArmor();
         }
 
-      } else{
-        $stats['armor'] = $armorFinal;
-        $stats['life'] = $lifeTarget;
+        if ($armor == 0) {
+            $stats['life'] = $lifeTarget - $this->getDamage();
+            $stats['armor'] = 0;
+            if ($stats['life'] <= 0) {
+                $stats['life'] = 'Mort';
+            }
+        } else {
 
-        if ($stats['life'] <= 0) {
-          $stats['life'] = 'Mort';
+            $armorFinal = $armor - $this->getDamage();
+
+            if ($armorFinal <= 0) {
+                $stats['armor'] = 0;
+                $stats['life'] = $lifeTarget + $armorFinal;
+
+                if ($stats['life'] <= 0) {
+                    $stats['life'] = 'Mort';
+                }
+            } else {
+                $stats['armor'] = $armorFinal;
+                $stats['life'] = $lifeTarget;
+
+                if ($stats['life'] <= 0) {
+                    $stats['life'] = 'Mort';
+                }
+            }
         }
-      }
 
+        return $stats;
     }
-
-    return $stats;
-  }
-
-
-  public function death()
-  {
-    return $this->$life <= 0;
-    echo "mort";
-  }
 
 }
